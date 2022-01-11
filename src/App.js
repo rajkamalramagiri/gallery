@@ -24,11 +24,22 @@ function App() {
   useEffect(() => {
     fetchData()
   }, [])
-  
+
   return (
-    <div >
-      <h2>Initial setup</h2>
-      <Loading/>
+    <div className="gallery">
+      {loading ? (
+        <Loading />
+      ) : (
+        data.length > 0 &&
+        data.map((item) => (
+          <Image
+            key={item.id}
+            handleZoom={handleZoom}
+            zoomId={zoomId}
+            {...item}
+          />
+        ))
+      )}
     </div>
   );
 }
